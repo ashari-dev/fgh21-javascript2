@@ -1,23 +1,16 @@
-const name = [
-  "Abigail",
-  "alexandra",
-  "Alison",
-  "Amanda",
-  "Angela",
-  "Bella",
-  "Carol",
-  "Caroline",
-  "Carolyn",
-  "Deirdre",
-  "Diana",
-  "Elizabeth",
-  "Ella",
-  "Faith",
-  "Olivia",
-  "Penelope",
+const names = [
+  "Abigail","Alexandra","Alison","Amanda",
+  "Angela","Bella","Carol","Caroline",
+  "Carolyn","Deirdre","Diana","Elizabeth",
+  "Ella","Faith","Olivia","Penelope",
 ];
-function searchName(search, jumlah, callback) {
-  console.log("belum dapat logikanya");
+
+function searchNames(search, jumMax) {
+  const filterNama = names.filter(function (name) {
+    name.toLowerCase().includes(search.toLowerCase());
+  });
+  return filterNama.slice(0, jumMax);
 }
 
-searchName("an", 3, callback);
+const hasilPencarian = searchNames("an", 3);
+console.log(hasilPencarian);
