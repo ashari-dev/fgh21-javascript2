@@ -1,6 +1,6 @@
-const nilaiAwal = 20;
-const nilaiAkhir = 30;
-const dataArray = [2, 4, 5, 1, 8, 19];
+const nilaiAwal = 5;
+const nilaiAkhir = 20;
+const dataArray = [2, 25, 4, 14, 17, 30, 8];
 
 function seleksiNilai(nilaiAwal, nilaiAkhir, dataArray) {
   if (nilaiAkhir > nilaiAwal && dataArray.length > 5) {
@@ -8,7 +8,8 @@ function seleksiNilai(nilaiAwal, nilaiAkhir, dataArray) {
       return i >= nilaiAwal && i <= nilaiAkhir;
     });
     if (filterData.length > 0) {
-      console.log(filterData);
+      const hasil = filterData.sort((a, b) => a - b);
+      console.log(hasil);
     } else {
       console.log("Nilai tidak ditemukan");
     }
