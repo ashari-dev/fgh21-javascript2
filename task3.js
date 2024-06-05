@@ -24,6 +24,7 @@ function seleksiNilai(awal, akhir, data, callback) {
   }
 }
 
+// mengurutkan dari nilai terkecil ke besar
 function urut(result) {
   let kondisi = false;
   while (!kondisi) {
