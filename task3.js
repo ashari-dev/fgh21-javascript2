@@ -2,7 +2,7 @@ const awal = 5;
 const akhir = 10;
 const data = [2, 3, 7, 9, 10, 13, 8, 14, 7];
 
-function seleksiNilai(awal, akhir, data) {
+function seleksiNilai(awal, akhir, data, cb) {
   if (akhir > awal) {
     if (data.length > 5) {
       let result = [];
@@ -12,7 +12,8 @@ function seleksiNilai(awal, akhir, data) {
         }
       }
       if (result.length !== 0) {
-        console.log(result);
+        // console.log(result);
+        cb(result);
       } else {
         console.log("nilai tidak ditemukan");
       }
@@ -24,4 +25,19 @@ function seleksiNilai(awal, akhir, data) {
   }
 }
 
-seleksiNilai(awal, akhir, data);
+function urut(result) {
+  let kondisi = false;
+  while (!kondisi) {
+    kondisi = true;
+    for (let i = 1; i < result.length; i++) {
+      if (result[i - 1] > result[i]) {
+        kondisi = false;
+        let temp = result[i - 1];
+        result[i - 1] = result[i];
+        result[i] = temp;
+      }
+    }
+  }
+  console.log(result);
+}
+seleksiNilai(awal, akhir, data, urut);
