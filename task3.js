@@ -1,23 +1,27 @@
-const nilaiAwal = 5;
-const nilaiAkhir = 20;
-const dataArray = [2, 25, 4, 14, 17, 30, 8];
+const awal = 5;
+const akhir = 10;
+const data = [2, 3, 7, 9, 10, 13, 8, 14, 7];
 
-function seleksiNilai(nilaiAwal, nilaiAkhir, dataArray) {
-  if (nilaiAkhir > nilaiAwal && dataArray.length > 5) {
-    const filterData = dataArray.filter(function (i) {
-      return i >= nilaiAwal && i <= nilaiAkhir;
-    });
-    if (filterData.length > 0) {
-      const hasil = filterData.sort((a, b) => a - b);
-      console.log(hasil);
+function seleksiNilai(awal, akhir, data) {
+  if (akhir > awal) {
+    if (data.length > 5) {
+      let result = [];
+      for (let i = 0; i < data.length; i++) {
+        if (data[i] > awal && data[i] < akhir) {
+          result = [...result, data[i]];
+        }
+      }
+      if (result.length !== 0) {
+        console.log(result);
+      } else {
+        console.log("nilai tidak ditemukan");
+      }
     } else {
-      console.log("Nilai tidak ditemukan");
+      console.log("data array harus lebih dari 5");
     }
-  } else if (dataArray.length < 5) {
-    console.log("Jumlah angka dalam dataArray harus lebih dari 5");
   } else {
-    console.log("Nilai akhir harus lebih besar dari nilai awal");
+    console.log("nilai awal harus lebih kecil dari nilai akhir");
   }
 }
 
-seleksiNilai(nilaiAwal, nilaiAkhir, dataArray);
+seleksiNilai(awal, akhir, data);
