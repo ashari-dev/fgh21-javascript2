@@ -2,7 +2,7 @@ const awal = 5;
 const akhir = 10;
 const data = [2, 3, 7, 9, 10, 13, 8, 14, 7];
 
-function seleksiNilai(awal, akhir, data, cb) {
+function seleksiNilai(awal, akhir, data, callback) {
   if (akhir > awal) {
     if (data.length > 5) {
       let result = [];
@@ -12,8 +12,7 @@ function seleksiNilai(awal, akhir, data, cb) {
         }
       }
       if (result.length !== 0) {
-        // console.log(result);
-        cb(result);
+        callback(result);
       } else {
         console.log("nilai tidak ditemukan");
       }
