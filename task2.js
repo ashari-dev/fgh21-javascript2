@@ -1,128 +1,95 @@
-// const names = [
-//   "Abigail",
-//   "Alexandra",
-//   "Alison",
-//   "Amanda",
-//   "Angela",
-//   "Bella",
-//   "Carol",
-//   "Caroline",
-//   "Carolyn",
-//   "Deirdre",
-//   "Diana",
-//   "Elizabeth",
-//   "Ella",
-//   "Faith",
-//   "Olivia",
-//   "Penelope",
-// ];
+const searchName = function (search, batas, callback) {
+  const names = [
+    "Abigail",
+    "Alexandra",
+    "Alison",
+    "Amanda",
+    "Angela",
+    "Bella",
+    "Carol",
+    "Caroline",
+    "Carolyn",
+    "Deirdre",
+    "Diana",
+    "Elizabets",
+    "Ella",
+    "Faith",
+    "Olivia",
+    "Penelope",
+  ];
+  const hurufBesar = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  const hurufKecil = "abcdefghijklmnopqrstuvwxyz";
+  let searchResult = [];
 
-// function searchName(search, arr, callback) {
-//   let result = [];
-//   for (let i = 0; i < arr.length; i++) {
-//     if (arr[i].toLowerCase().includes(search)) {
-//       result = [...result, arr[i]];
-//     }
-//   }
-//   callback(result, 3);
-// }
+  let search2 = "";
+  for (let i = 0; i < search.length; i++) {
+    let converted = false;
+    for (let j = 0; j < hurufBesar.length; j++) {
+      if (converted === false) {
+        if (search[i] === hurufBesar[j]) {
+          search2 += hurufKecil[j];
+          converted = true;
+        }
+        if (j === 25) {
+          if (search[i] !== hurufBesar[j]) {
+            search2 += search[i];
+            converted = true;
+          }
+        }
+      }
+    }
+  }
+  console.log(search2);
 
-// function limit(arr, lim) {
-//   let penampung = [];
-//   for (let i = 0; i < lim; i++) {
-//     if (arr[i] !== undefined) {
-//       penampung = [...penampung, arr[i]];
-//     }
-//   }
-//   console.log(penampung);
-// }
-// searchName("an", names, limit);
+  for (let i = 0; i < names.length; i++) {
+    const personName = names[i];
+    let result = "";
+    for (let i = 0; i < personName.length; i++) {
+      let converted = false;
+      for (let j = 0; j < hurufBesar.length; j++) {
+        if (converted === false) {
+          if (personName[i] === hurufBesar[j]) {
+            result += hurufKecil[j];
+            converted = true;
+          }
+          if (j === 25) {
+            if (personName[i] !== hurufBesar[j]) {
+              result += personName[i];
+              converted = true;
+            }
+          }
+        }
+      }
+    }
 
-const names = [
-  "Abigail",
-  "alexandra",
-  "Alison",
-  "Amanda",
-  "Angela",
-  "Bella",
-  "Carol",
-  "Caroline",
-  "Carolyn",
-  "Deirdre",
-  "Diana",
-  "Elizabeth",
-  "Ella",
-  "Faith",
-  "Olivia",
-  "Penelope",
-];
-const hurufKecil = {
-  A: "a",
-  B: "b",
-  C: "c",
-  D: "d",
-  E: "e",
-  F: "f",
-  G: "g",
-  H: "h",
-  I: "i",
-  J: "j",
-  K: "k",
-  L: "l",
-  M: "m",
-  N: "n",
-  O: "o",
-  P: "p",
-  Q: "q",
-  R: "r",
-  S: "s",
-  T: "t",
-  U: "u",
-  V: "v",
-  W: "w",
-  X: "x",
-  Y: "y",
-  Z: "z",
+    let isFound = false;
+    for (let m = 0; m < result.length; m++) {
+      let segmen = "";
+      if (result[m + 1] !== undefined) {
+        segmen = result[m] + result[m + 1];
+      } else {
+        segmen = result[i];
+      }
+      if (segmen === search2) {
+        isFound = true;
+      }
+    }
+    if (isFound === true) {
+      searchResult = [...searchResult, personName];
+    }
+  }
+  console.log(searchResult);
+  callback(searchResult, batas);
 };
 
-function searchName(search, arr, callback) {
-  //membuat search menjadi huruf kecil semua
-  let cari = "";
-  for (let i = 0; i < search.length; i++) {
-    const karakter = search[i];
-    cari += hurufKecil[karakter] || karakter;
-  }
-
-  // mengubah isi dalam array menjadi huruf kecil semua
+function limited(arr, lim) {
   let result = [];
-  for (let i = 0; i < arr.length; i++) {
-    let pecahArr = arr[i];
-
-    let kata = "";
-    for (let i = 0; i < pecahArr.length; i++) {
-      const karakter = pecahArr[i];
-      kata += hurufKecil[karakter] || karakter;
-    }
-    result = [...result, kata];
-  }
-
-  // melakukan filterasi
-  let container = [];
-  for (let i = 0; i < result.length; i++) {
-    if (result[i].includes(cari)) {
-      container = [...container, result[i]];
+  for (let a = 0; a < lim; a++) {
+    if (arr[a]) {
+      result = [...result, arr[a]];
     }
   }
-  callback(container, 3);
+  console.log(result);
 }
 
-function limit(arr, lim) {
-  let penampung = [];
-  for (let i = 0; i < lim; i++) {
-    if (arr[i] !== undefined) {
-      penampung = [...penampung, arr[i]];
-    }
-  }
-  console.log(penampung);
-}
-searchName("La", names, limit);
+searchName("an", 3, limited);
