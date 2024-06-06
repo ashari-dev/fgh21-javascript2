@@ -1,18 +1,27 @@
-const awal = 5;
-const akhir = 10;
-const data = [2, 3, 7, 9, 10, 13, 8, 14, 7];
-
-function seleksiNilai(awal, akhir, data, callback) {
-  if (akhir > awal) {
-    if (data.length > 5) {
+function seleksiNilai(nilaiAwal, nilaiAkhir, dataArray) {
+  if (nilaiAkhir > nilaiAwal) {
+    if (dataArray.length > 5) {
       let result = [];
-      for (let i = 0; i < data.length; i++) {
-        if (data[i] > awal && data[i] < akhir) {
-          result = [...result, data[i]];
+      for (let i = 0; i < dataArray.length; i++) {
+        if (dataArray[i] > nilaiAwal && dataArray[i] < nilaiAkhir) {
+          result = [...result, dataArray[i]];
         }
       }
       if (result.length !== 0) {
-        callback(result);
+        // console.log(result);
+        let kondisi = false;
+        while (!kondisi) {
+          kondisi = true;
+          for (let i = 1; i < result.length; i++) {
+            if (result[i - 1] > result[i]) {
+              kondisi = false;
+              let temp = result[i - 1];
+              result[i - 1] = result[i];
+              result[i] = temp;
+            }
+          }
+        }
+        console.log(result);
       } else {
         console.log("nilai tidak ditemukan");
       }
@@ -24,20 +33,4 @@ function seleksiNilai(awal, akhir, data, callback) {
   }
 }
 
-// mengurutkan dari nilai terkecil ke besar
-function urut(result) {
-  let kondisi = false;
-  while (!kondisi) {
-    kondisi = true;
-    for (let i = 1; i < result.length; i++) {
-      if (result[i - 1] > result[i]) {
-        kondisi = false;
-        let temp = result[i - 1];
-        result[i - 1] = result[i];
-        result[i] = temp;
-      }
-    }
-  }
-  console.log(result);
-}
-seleksiNilai(awal, akhir, data, urut);
+seleksiNilai(5, 20, [2, 25, 4, 14, 17, 30, 8]);
